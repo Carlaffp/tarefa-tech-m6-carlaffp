@@ -4,6 +4,8 @@ import { validateBodyMiddleware } from "../middlewares/validateBody.middleware";
 import { userCreateSchema, userUpdateSchema } from "../schemas/user.schema";
 import { verifyEmailExist } from "../middlewares/verifyEmailExist.middleware";
 import { verifyIdExist } from "../middlewares/verifyIdExist.middleware";
+import { verifyToken } from "../middlewares/verifyTokenMiddleware";
+import { verifyUserPermission } from "../middlewares/verifyUserPermission.middleware";
 
 const userRouter: Router = Router();
 
@@ -15,15 +17,20 @@ userRouter.post(
 );
 userRouter.get(
   "",
+  verifyToken,
   readUserController
 )
 userRouter.delete(
   "/:id",
+  verifyToken,
+  verifyUserPermission,
   verifyIdExist,
   deleteUserController
 )
 userRouter.patch(
   "/:id",
+  verifyToken,
+  verifyUserPermission,
   verifyIdExist,
   validateBodyMiddleware(userUpdateSchema),
   verifyEmailExist,

@@ -10,12 +10,12 @@ const LoginCreateService = async({email, password}: LoginCreate):Promise<LoginRe
   
   const userLogin: User | null = await userRepository.findOneBy({email})
 
-  if(!userLogin) throw new AppError("Invalid creadentials", 401)
+  if(!userLogin) throw new AppError("Invalid credentials", 401)
   
 
   const passwordIsValid: boolean = await compare(password, userLogin.password)
 
-  if(!passwordIsValid) throw new AppError("Invalid creadentials",401)
+  if(!passwordIsValid) throw new AppError("Invalid credentials",401)
   
   const token: string = sign(
     {email:userLogin.email},

@@ -23,7 +23,7 @@ const userPartialUpdateService = async(user:User, payload: UserUpdate): Promise<
 
 
 const userDeleteService =  async(user:User):Promise<void> =>{
-  await userRepository.softRemove(user)
+  await userRepository.remove(user)
 }
 
 export {userCreateService, userReadService, userDeleteService, userPartialUpdateService}

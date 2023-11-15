@@ -1,5 +1,5 @@
 import {z} from "zod";
-import { userSchema } from "./user.schema";
+import { userReturnSchema, userSchema } from "./user.schema";
 
 const contactSchema = z.object({
   id: z.number().int().positive(),
@@ -12,6 +12,7 @@ const contactSchema = z.object({
 
 const contactCreateSchema = contactSchema.omit({
   id: true,
+  createdAt: true,
   user:true,
 });
 
@@ -19,9 +20,14 @@ const contactReadSchema = contactSchema.array();
 
 const contactUpdateSchema = contactCreateSchema.partial()
 
+const contactReturnSchema = contactSchema.extend({
+  user:userReturnSchema
+})
+
 export {
   contactSchema,
   contactCreateSchema,
   contactReadSchema,
-  contactUpdateSchema
+  contactUpdateSchema,
+  contactReturnSchema
 }

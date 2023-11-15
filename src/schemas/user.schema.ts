@@ -2,8 +2,8 @@ import { z } from "zod";
 
 const userSchema = z.object({
   id: z.number().int().positive(),
-  fullname: z.string().max(125),
-  email: z.string().max(45),
+  fullName: z.string().max(125),
+  email: z.string().max(45).email(),
   password: z.string().max(120),
   phone: z.string(),
   createdAt: z.string(),
@@ -21,6 +21,7 @@ const userReturnSchema = userSchema.omit({
 });
 
 const userReadSchema = userReturnSchema.array();
+
 
 export {
   userSchema,

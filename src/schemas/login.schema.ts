@@ -1,9 +1,7 @@
 import {z} from "zod";
+import { userSchema } from "./user.schema";
 
 
-const loginSchema = z.object({
-  email: z.string().max(45).email(),
-  password: z.string().max(120),
-})
+const loginSchema = userSchema.pick({email:true, password:true})
 
 export {loginSchema}

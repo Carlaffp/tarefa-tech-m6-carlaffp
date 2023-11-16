@@ -1,15 +1,15 @@
 import {z } from "zod";
-import { contactCreateSchema, contactReadSchema, contactReturnSchema, contactSchema, contactUpdateSchema } from "../schemas/contact.schema";
-import { Repository } from "typeorm";
+import { contactCreateSchema, contactReturnSchema, contactUpdateSchema } from "../schemas/contact.schema";
+import { DeepPartial, Repository } from "typeorm";
 import Contact from "../entities/contacts.entity";
 
 type ContactCreat = z.infer<typeof contactCreateSchema>;
-type ContactRead = z.infer<typeof contactReadSchema>;
-type ContactUpdate = z.infer<typeof contactUpdateSchema>
+
+type ContactUpdate = DeepPartial<Contact>
 type ContactReturn = z.infer<typeof contactReturnSchema>
 
 type ContactRepo = Repository<Contact>
 
 export {
-  ContactCreat, ContactRead, ContactUpdate, ContactRepo, ContactReturn
+  ContactCreat, ContactUpdate, ContactRepo, ContactReturn
 }

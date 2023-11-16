@@ -19,21 +19,23 @@ userRouter.get(
   "",
   verifyToken,
   readUserController
-)
+  )
+
+  userRouter.patch(
+    "/:id",
+    verifyToken,
+    verifyUserPermission,
+    verifyIdExist,
+    validateBodyMiddleware(userUpdateSchema),
+    verifyEmailExist,
+    partialUpdateUserController
+  )
+  
 userRouter.delete(
   "/:id",
   verifyToken,
   verifyUserPermission,
   verifyIdExist,
   deleteUserController
-)
-userRouter.patch(
-  "/:id",
-  verifyToken,
-  verifyUserPermission,
-  verifyIdExist,
-  validateBodyMiddleware(userUpdateSchema),
-  verifyEmailExist,
-  partialUpdateUserController
 )
 export { userRouter };

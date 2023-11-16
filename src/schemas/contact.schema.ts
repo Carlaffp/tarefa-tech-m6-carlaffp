@@ -16,7 +16,6 @@ const contactCreateSchema = contactSchema.omit({
   user:true,
 });
 
-const contactReadSchema = contactSchema.array();
 
 const contactUpdateSchema = contactCreateSchema.partial()
 
@@ -27,7 +26,6 @@ const contactReturnSchema = contactSchema.extend({
 export {
   contactSchema,
   contactCreateSchema,
-  contactReadSchema,
   contactUpdateSchema,
   contactReturnSchema
 }

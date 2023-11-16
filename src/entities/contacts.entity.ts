@@ -9,7 +9,7 @@ class Contact {
   @Column({type: "varchar", length:125})
   fullName: string;
 
-  @Column({type: "varchar", length: 45, unique:true})
+  @Column({type: "varchar", length: 45})
   email: string;
 
   @Column()
